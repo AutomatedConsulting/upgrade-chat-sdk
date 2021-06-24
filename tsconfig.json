@@ -12,6 +12,7 @@
       "src/types",
       "./node_modules/@types"
     ],
+    "strictNullChecks": true,
     "sourceMap": true
   },
   "include": [

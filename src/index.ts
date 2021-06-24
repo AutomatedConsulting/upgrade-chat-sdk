@@ -1,10 +1,10 @@
-import resources from './resources'
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
 import { ApiUrl, ApiVersion, OauthResponse } from './types'
 import Orders from './resources/Orders'
 import Products from './resources/Products'
 import Webhooks from './resources/Webhooks'
 import WebhookEvents from './resources/WebhookEvents'
+import resources, { Resources } from './resources'
 
 interface UpgradeChatConstructor {
   apiUrl?: ApiUrl
@@ -14,7 +14,7 @@ interface UpgradeChatConstructor {
   version?: ApiVersion
 }
 
-export default class UpgradeChat {
+export default class UpgradeChat implements Resources {
   public apiUrl: ApiUrl = 'https://api-staging.upgrade.chat'
   public version: ApiVersion = 'v1'
   public clientId!: string
@@ -43,28 +43,34 @@ export default class UpgradeChat {
     this.axios = axios.create({
       baseURL: `${this.apiUrl}/`
     })
-    
+
     this._initializeResources()
     
     return this
   }
 
   private _initializeResources() {
-    resources.forEach((resource) => {
-      const instance = new resource(this)
-      switch (true) {
-        case instance instanceof Orders:
+    const assertNever = (type: never): never => {
+        throw new Error(`Resource of type ${type} has not been implemented.`)
+    }
+    Object.keys(resources).forEach((key) => {
+      const resourceKey: keyof typeof resources = key as any
+      const instance = new resources[resourceKey](this)
+      switch (instance.type) {
+        case 'orders':
           this.orders = instance as Orders
           break
-        case instance instanceof Products:
+        case 'products':
           this.products = instance as Products
           break
-        case instance instanceof Webhooks:
+        case 'webhooks':
           this.webhooks = instance as Webhooks
           break
-        case instance instanceof WebhookEvents:
+        case 'webhookEvents':
           this.webhookEvents = instance as WebhookEvents
           break
+        default:
+          assertNever(instance.type)
       }
     })
   }

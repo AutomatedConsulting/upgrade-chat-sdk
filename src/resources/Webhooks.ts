@@ -1,4 +1,4 @@
-import Resource from "../Resource"
+import Resource  from "../Resource"
 import { Webhook } from '../types'
 
 interface ListWebhookOptions {

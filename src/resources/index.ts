@@ -3,8 +3,17 @@ import Products from './Products'
 import Webhooks from './Webhooks'
 import WebhookEvents from './WebhookEvents'
 
-export type ResourceType = typeof Orders | typeof Products | typeof Webhooks | typeof WebhookEvents
+const resources = {
+  Orders,
+  Products,
+  Webhooks,
+  WebhookEvents
+}
 
-const resources: ResourceType[] = [Orders, Products, Webhooks, WebhookEvents]
+export type Resources = {
+  [property in Uncapitalize<keyof typeof resources>]: InstanceType<(typeof resources[Capitalize<property>])>
+}
+
+export type ResourceLabel = keyof Resources
 
 export default resources

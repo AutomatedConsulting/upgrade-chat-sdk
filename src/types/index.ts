@@ -119,7 +119,6 @@ export enum WebhookEventType {
   ORDER_UPDATED = 'order.updated',
   ORDER_DELETED = 'order.deleted'
 }
-
 export interface WebhookEvent {
   id: string
   body: any
