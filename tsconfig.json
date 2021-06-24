@@ -13,7 +13,8 @@
       "./node_modules/@types"
     ],
     "strictNullChecks": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "noUnusedLocals": true
   },
   "include": [
     "src"

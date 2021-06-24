@@ -51,23 +51,23 @@ export default class UpgradeChat implements Resources {
 
   private _initializeResources() {
     const assertNever = (type: never): never => {
-        throw new Error(`Resource of type ${type} has not been implemented.`)
+      throw new Error(`Resource of type ${type} has not been implemented.`)
     }
     Object.keys(resources).forEach((key) => {
       const resourceKey: keyof typeof resources = key as any
       const instance = new resources[resourceKey](this)
       switch (instance.type) {
         case 'orders':
-          this.orders = instance as Orders
+          this[instance.type] = instance as Orders
           break
         case 'products':
-          this.products = instance as Products
+          this[instance.type] = instance as Products
           break
         case 'webhooks':
-          this.webhooks = instance as Webhooks
+          this[instance.type] = instance as Webhooks
           break
         case 'webhookEvents':
-          this.webhookEvents = instance as WebhookEvents
+          this[instance.type] = instance as WebhookEvents
           break
         default:
           assertNever(instance.type)
