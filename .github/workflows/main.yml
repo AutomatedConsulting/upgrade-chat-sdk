@@ -17,9 +17,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: |
-          run: npm run ci
-          npm run build --if-present
+          yarn ci
+          yarn build --if-present
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-          npm publish --ignore-scripts --access=public
+          yarn publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
