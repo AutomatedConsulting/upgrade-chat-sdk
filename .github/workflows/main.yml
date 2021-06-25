@@ -16,9 +16,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - run: yarn ci
+      - run: yarn build
+        name: Build
       - run: |
-          yarn ci
-          yarn build
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
           npm publish --ignore-scripts --access=public
         env:
