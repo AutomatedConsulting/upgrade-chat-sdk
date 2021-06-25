@@ -1,6 +1,8 @@
 name: main
 
-on: [push]
+on: 
+  push:
+    branches: [ main ]
 
 jobs:
   build:
@@ -17,20 +19,7 @@ jobs:
       - run: npm run ci
       - run: npm run build --if-present
         name: Build
-      - run: npm test --if-present
-        env:
-          CI: true
-  publish:
-    if: github.ref == 'refs/heads/main'
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 14
-      - name: Publish
-        run: |
+      - run: |
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
           npm publish --ignore-scripts --access=public
         env:

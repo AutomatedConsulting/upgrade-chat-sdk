@@ -6,7 +6,8 @@
   "types": "dist/index.d.ts",
   "homepage": "https://github.com/AutomatedConsulting/upgrade-chat-sdk",
   "scripts": {
-    "build": "tsc --p ./tsconfig.json",
+    "build": "tsc",
+    "prepack": "yarn build",
     "dev": "rm -rf ./dist && tsc --p ./tsconfig.json --watch",
     "ci": "yarn install --frozen-lockfile"
   },
