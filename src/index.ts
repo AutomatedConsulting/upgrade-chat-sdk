@@ -56,21 +56,16 @@ export default class UpgradeChat implements Resources {
     Object.keys(resources).forEach((key) => {
       const resourceKey: keyof typeof resources = key as any
       const instance = new resources[resourceKey](this)
-      switch (instance.type) {
-        case 'orders':
-          this[instance.type] = instance as Orders
-          break
-        case 'products':
-          this[instance.type] = instance as Products
-          break
-        case 'webhooks':
-          this[instance.type] = instance as Webhooks
-          break
-        case 'webhookEvents':
-          this[instance.type] = instance as WebhookEvents
-          break
-        default:
-          assertNever(instance.type)
+      if (instance instanceof Orders) {
+        this.orders = instance
+      } else if (instance instanceof Products) {
+        this.products = instance
+      } else if (instance instanceof Webhooks) {
+        this.webhooks = instance
+      } else if (instance instanceof WebhookEvents) {
+        this.webhookEvents = this.webhookEvents
+      } else {
+        assertNever(instance)
       }
     })
   }
