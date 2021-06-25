@@ -20,6 +20,7 @@ jobs:
       - run: yarn build
         name: Build
       - run: |
+          echo "$NODE_AUTH_TOKEN"
           npm publish --ignore-scripts --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
