@@ -1,3 +1,7 @@
 /node_modules
 dist/
 src/app.ts
+.env.test
+.env
+.env.production
+.env.local

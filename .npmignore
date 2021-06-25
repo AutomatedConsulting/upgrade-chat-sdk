@@ -2,3 +2,7 @@
 src/app.ts
 /.vscode
 /.github
+.env.test
+.env
+.env.production
+.env.local
