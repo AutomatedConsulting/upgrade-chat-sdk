@@ -6,7 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc --p ./tsconfig.json",
-    "dev": "rm -rf ./dist && tsc --p ./tsconfig.json --watch"
+    "dev": "rm -rf ./dist && tsc --p ./tsconfig.json --watch",
+    "ci": "yarn install --frozen-lockfile"
   },
   "author": "Automated.Consulting",
   "license": "ISC",
