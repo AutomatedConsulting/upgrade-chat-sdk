@@ -106,7 +106,8 @@ export interface Product {
 }
 
 export interface DiscordRole {
-
+  name: string
+  discord_id: string
 }
 
 export interface Webhook {
@@ -119,9 +120,10 @@ export enum WebhookEventType {
   ORDER_UPDATED = 'order.updated',
   ORDER_DELETED = 'order.deleted'
 }
+
 export interface WebhookEvent {
   id: string
-  body: any
+  data: Order
   type: WebhookEventType
   attempts: number
   webhook_id: string

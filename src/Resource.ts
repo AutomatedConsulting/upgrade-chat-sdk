@@ -1,12 +1,8 @@
 import { camelCase } from 'lodash'
 import UpgradeChat from './index'
-import { ResourceLabel, TypeChecks } from './resources'
-import Orders from './resources/Orders'
-import Products from './resources/Products'
-import WebhookEvents from './resources/WebhookEvents'
-import Webhooks from './resources/Webhooks'
+import { ResourceLabel } from './resources'
 
-export default abstract class Resource<type extends ResourceLabel = ResourceLabel> implements TypeChecks {
+export default abstract class Resource<type extends ResourceLabel = ResourceLabel> {
   _upgradeChat: UpgradeChat
 
   get type(): type {
@@ -16,21 +12,5 @@ export default abstract class Resource<type extends ResourceLabel = ResourceLabe
   constructor(upgradeChat: UpgradeChat) {
     this._upgradeChat = upgradeChat
     return this
-  }
-
-  isOrders(instance: Resource): instance is Orders  {
-    return instance instanceof Orders
-  }
-
-  isProducts(instance: Resource): instance is Products  {
-    return instance instanceof Products
-  }
-
-  isWebhooks(instance: Resource): instance is Webhooks  {
-    return instance instanceof Webhooks
-  }
-
-  isWebhookEvents(instance: Resource): instance is WebhookEvents  {
-    return instance instanceof WebhookEvents
   }
 }
