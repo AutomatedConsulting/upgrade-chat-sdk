@@ -53,7 +53,6 @@ export default class UpgradeChat implements Resources {
     const assertNever = (type: never): never => {
       throw new Error(`Resource of type ${type} has not been implemented.`)
     }
-    console.log({ resources })
     Object.keys(resources).forEach((key) => {
       const resourceKey: keyof typeof resources = key as any
       const instance = new resources[resourceKey](this)
