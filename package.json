@@ -13,6 +13,14 @@
   },
   "author": "Automated.Consulting",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AutomatedConsulting/upgrade-chat-sdk.git"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/",
+    "access": "public"
+  },
   "dependencies": {
     "@types/lodash": "^4.14.170",
     "@types/node": "^15.12.4",
