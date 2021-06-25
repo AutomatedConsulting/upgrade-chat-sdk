@@ -1,6 +1,6 @@
 {
   "name": "@upgrade.chat/sdk",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A Typescript SDK used to interact with the Upgrade.Chat API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "url": "git+https://github.com/AutomatedConsulting/upgrade-chat-sdk.git"
   },
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com/",
+    "registry": "https://npm.pkg.github.com/",
     "access": "public"
   },
   "dependencies": {
