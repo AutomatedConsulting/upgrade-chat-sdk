@@ -16,10 +16,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+        name: Build
       - run: |
+          run: npm run ci
+          npm run build --if-present
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-          yarn install --frozen-lockfile
-          yarn build
-          yarn publish
+          npm publish --ignore-scripts --access=public
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
